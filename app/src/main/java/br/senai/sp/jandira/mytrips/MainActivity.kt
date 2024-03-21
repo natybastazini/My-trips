@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,6 +21,8 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
@@ -32,6 +35,7 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.PersonOutline
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.filled.PhoneAndroid
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -40,6 +44,7 @@ import androidx.compose.material3.CardElevation
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
@@ -48,6 +53,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -69,6 +75,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     GreetingLogin()
                     GreetingSignUp()
+                    GreetingHome()
                 }
             }
         }
@@ -77,31 +84,31 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun GreetingLogin() {
-    Column (
+    Column(
         modifier = Modifier
             .fillMaxSize(),
         verticalArrangement = Arrangement.SpaceBetween
-    ){
-        Row (
+    ) {
+        Row(
             modifier = Modifier
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.End
-        ){
-            Card (
+        ) {
+            Card(
                 modifier = Modifier
                     .height(50.dp)
                     .width(160.dp),
                 colors = CardDefaults.cardColors(Color(0xFFCF06F0)),
                 shape = RoundedCornerShape(topStart = 0.dp, bottomStart = 32.dp)
-            ){
+            ) {
 
             }
         }
-        Column (
+        Column(
             modifier = Modifier
                 .padding(start = 20.dp)
 
-        ){
+        ) {
             Text(
                 text = "Login",
                 color = Color(0xFFCF06F0),
@@ -115,7 +122,7 @@ fun GreetingLogin() {
                 fontWeight = FontWeight.Normal
             )
         }
-        Column (
+        Column(
             modifier = Modifier
                 .padding(
                     horizontal = 20.dp
@@ -124,7 +131,7 @@ fun GreetingLogin() {
             OutlinedTextField(
                 modifier = Modifier
                     .fillMaxWidth(),
-                    shape = RoundedCornerShape(16.dp),
+                shape = RoundedCornerShape(16.dp),
                 value = "",
                 onValueChange = {},
                 leadingIcon = {
@@ -173,14 +180,14 @@ fun GreetingLogin() {
                     Text(text = "Password")
                 }
             )
-            Row (
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 80.dp, end = 20.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.End,
-            ){
-                Column (
+            ) {
+                Column(
                     modifier = Modifier
                         .padding(top = 20.dp),
                     horizontalAlignment = Alignment.End
@@ -203,16 +210,17 @@ fun GreetingLogin() {
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Bold
                         )
-                        Icon(imageVector = Icons.Default.ArrowForward,
+                        Icon(
+                            imageVector = Icons.Default.ArrowForward,
                             contentDescription = "Seta",
                             tint = Color.White,
                             modifier = Modifier
                                 .size(26.dp)
                         )
                     }
-                    Row (
+                    Row(
 
-                    ){
+                    ) {
                         Text(
                             text = "Don't have an account?",
                             color = Color(0xFFA09C9C),
@@ -230,18 +238,18 @@ fun GreetingLogin() {
                 }
             }
         }
-        Row (
+        Row(
             modifier = Modifier
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.Start
-        ){
-            Card (
+        ) {
+            Card(
                 modifier = Modifier
                     .height(50.dp)
                     .width(160.dp),
                 colors = CardDefaults.cardColors(Color(0xFFCF06F0)),
                 shape = RoundedCornerShape(bottomStart = 0.dp, topEnd = 32.dp)
-            ){
+            ) {
 
             }
         }
@@ -257,36 +265,37 @@ fun GreetingPreview() {
 }
 
 @Composable
-fun GreetingSignUp (){
-    Column (
+fun GreetingSignUp() {
+    Column(
         modifier = Modifier
-        .fillMaxSize(),
-        verticalArrangement = Arrangement.SpaceBetween) {
-        Row (
+            .fillMaxSize(),
+        verticalArrangement = Arrangement.SpaceBetween
+    ) {
+        Row(
             modifier = Modifier
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.End
-        ){
-            Card (
+        ) {
+            Card(
                 modifier = Modifier
                     .height(50.dp)
                     .width(160.dp),
                 colors = CardDefaults.cardColors(Color(0xFFCF06F0)),
                 shape = RoundedCornerShape(topStart = 0.dp, bottomStart = 32.dp)
-            ){
+            ) {
 
             }
         }
-        Column (
+        Column(
             modifier = Modifier
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
-        ){
-            Column (
+        ) {
+            Column(
                 modifier = Modifier
                     .padding(bottom = 32.dp, top = 10.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
-            ){
+            ) {
                 Text(
                     text = "SIGN UP",
                     color = Color(0xFFCF06F0),
@@ -303,11 +312,19 @@ fun GreetingSignUp (){
             Box(
                 modifier = Modifier
                     .padding(bottom = 32.dp)
-            ){
-                Card (
+            ) {
+                Card(
                     colors = CardDefaults.cardColors(Color(0xffF6F6F6)),
                     shape = RoundedCornerShape(50.dp),
-                    border = BorderStroke(2.dp, Color(0xFFCF06F0)),
+                    border = BorderStroke(
+                        width = 2.dp,
+                        brush = Brush.horizontalGradient(
+                            listOf(
+                                Color(0xFFCF06F0),
+                                Color.White
+                            )
+                        )
+                    ),
                     elevation = CardDefaults.cardElevation(6.dp)
                 ) {
                     Icon(
@@ -318,11 +335,11 @@ fun GreetingSignUp (){
                             .size(80.dp)
                     )
                 }
-                Card (
+                Card(
                     modifier = Modifier
                         .offset(x = 60.dp, y = (64.dp)),
                     colors = CardDefaults.cardColors(Color.Transparent)
-                ){
+                ) {
                     Icon(
                         imageVector = Icons.Default.AddAPhoto,
                         contentDescription = "Câmera",
@@ -333,7 +350,7 @@ fun GreetingSignUp (){
                 }
             }
         }
-        Column (
+        Column(
             modifier = Modifier
                 .padding(
                     horizontal = 20.dp
@@ -436,12 +453,12 @@ fun GreetingSignUp (){
                 }
             )
         }
-        Column (
-            modifier = Modifier.padding(start = 10.dp, bottom =  4.dp)
-        ){
-            Row (
+        Column(
+            modifier = Modifier.padding(start = 10.dp, bottom = 4.dp)
+        ) {
+            Row(
                 verticalAlignment = Alignment.CenterVertically
-            ){
+            ) {
                 Checkbox(
                     checked = false,
                     onCheckedChange = {},
@@ -456,13 +473,13 @@ fun GreetingSignUp (){
                 )
             }
         }
-        Row (
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 10.dp, end = 20.dp),
             horizontalArrangement = Arrangement.End,
-        ){
-            Column (
+        ) {
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(20.dp),
@@ -487,11 +504,11 @@ fun GreetingSignUp (){
                         fontWeight = FontWeight.Bold
                     )
                 }
-                Row (
+                Row(
                     modifier = Modifier
                         .fillMaxWidth(),
                     horizontalArrangement = Arrangement.End
-                ){
+                ) {
                     Text(
                         text = "Already have an account?",
                         color = Color(0xFFA09C9C),
@@ -508,18 +525,18 @@ fun GreetingSignUp (){
 
             }
         }
-        Row (
+        Row(
             modifier = Modifier
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.Start
-        ){
-            Card (
+        ) {
+            Card(
                 modifier = Modifier
                     .height(50.dp)
                     .width(160.dp),
                 colors = CardDefaults.cardColors(Color(0xFFCF06F0)),
                 shape = RoundedCornerShape(bottomStart = 0.dp, topEnd = 32.dp)
-            ){
+            ) {
 
             }
         }
@@ -528,8 +545,115 @@ fun GreetingSignUp (){
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun GreentingPreview() {
+fun GreetingPreviewSingUp() {
     MyTripsTheme {
         GreetingSignUp()
     }
 }
+
+@Composable
+fun GreetingHome() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFFF7F4F4))
+    ) {
+        Column {
+
+        }
+        Spacer(modifier = Modifier.height(12.dp))
+        Text(
+            text = "Categories",
+            fontWeight = FontWeight.Normal,
+            color = Color.Black,
+            fontSize = 18.sp
+        )
+        Spacer(modifier = Modifier.height(12.dp))
+        LazyRow() {
+            items(20) {
+                Card(
+                    modifier = Modifier
+                        .width(180.dp)
+                        .height(120.dp)
+                        .padding(end = 8.dp),
+                    colors = CardDefaults
+                        .cardColors(
+                            containerColor = Color(0xFFCF06F0)
+                        ),
+                    elevation = CardDefaults.cardElevation(10.dp)
+                ) {
+
+                }
+            }
+        }
+        Spacer(modifier = Modifier.height(12.dp))
+        OutlinedTextField(
+            value = "",
+            onValueChange = {},
+            modifier = Modifier
+                .fillMaxWidth(),
+            placeholder = {
+                Text(
+                    text = "Search your destiny",
+                    color = Color.Gray
+                )
+            },
+            colors = OutlinedTextFieldDefaults.colors(
+                unfocusedBorderColor = Color.White,
+                unfocusedContainerColor = Color.White
+            ),
+            shape = RoundedCornerShape(16.dp),
+            trailingIcon = {
+                IconButton(onClick = { /*TODO*/ }) {
+                    Icon(
+                        imageVector = Icons.Default.Search,
+                        contentDescription = "Botão de pesquisa",
+                        tint = Color.Gray,
+                        modifier = Modifier
+                            .size(32.dp)
+                    )
+                }
+            }
+        )
+        Spacer(modifier = Modifier.height(12.dp))
+        Text(
+            text = "Past Trips",
+            fontWeight = FontWeight.Normal,
+            color = Color.Black,
+            fontSize = 18.sp
+        )
+        LazyColumn(){
+            items(20) {
+                Card(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .height(120.dp)
+                        .padding(bottom = 8.dp),
+                    colors = CardDefaults
+                        .cardColors(
+                            containerColor = Color(0xFFCF06F0)
+                        ),
+                    elevation = CardDefaults.cardElevation(10.dp)
+                ) {
+
+                }
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun GreetingPreviewHome() {
+    MyTripsTheme {
+        GreetingHome()
+    }
+}
+
+//@Preview(showBackground = true, showSystemUi = true)
+//@Composable
+//fun GreetingPreview() {
+//    MyTripsTheme {
+//        GreetingHome()
+//    }
+//}
