@@ -51,6 +51,8 @@ import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -73,8 +75,6 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    GreetingLogin()
-                    GreetingSignUp()
                     GreetingHome()
                 }
             }
@@ -84,6 +84,15 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun GreetingLogin() {
+
+    var emailState = remember {
+        mutableStateOf("")
+    }
+
+    var passwordState = remember {
+        mutableStateOf("")
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -132,8 +141,10 @@ fun GreetingLogin() {
                 modifier = Modifier
                     .fillMaxWidth(),
                 shape = RoundedCornerShape(16.dp),
-                value = "",
-                onValueChange = {},
+                value = emailState.value,
+                onValueChange = {
+                    emailState.value = it
+                },
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Email,
@@ -160,8 +171,10 @@ fun GreetingLogin() {
 
                     ),
                 shape = RoundedCornerShape(16.dp),
-                value = "",
-                onValueChange = {},
+                value = passwordState.value,
+                onValueChange = {
+                    passwordState.value = it
+                },
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Lock,
@@ -266,6 +279,27 @@ fun GreetingPreview() {
 
 @Composable
 fun GreetingSignUp() {
+
+    var nomeState = remember {
+        mutableStateOf("")
+    }
+
+    var phoneState = remember {
+        mutableStateOf("")
+    }
+
+    var  emailState = remember {
+        mutableStateOf("")
+    }
+
+    var passwordState = remember {
+        mutableStateOf("")
+    }
+
+    var checkState = remember {
+        mutableStateOf(false)
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -360,8 +394,10 @@ fun GreetingSignUp() {
                 modifier = Modifier
                     .fillMaxWidth(),
                 shape = RoundedCornerShape(16.dp),
-                value = "",
-                onValueChange = {},
+                value = nomeState.value,
+                onValueChange = {
+                    nomeState.value = it
+                },
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Person,
@@ -384,8 +420,10 @@ fun GreetingSignUp() {
                 modifier = Modifier
                     .fillMaxWidth(),
                 shape = RoundedCornerShape(16.dp),
-                value = "",
-                onValueChange = {},
+                value = phoneState.value,
+                onValueChange = {
+                    phoneState.value = it
+                },
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Phone,
@@ -408,8 +446,10 @@ fun GreetingSignUp() {
                 modifier = Modifier
                     .fillMaxWidth(),
                 shape = RoundedCornerShape(16.dp),
-                value = "",
-                onValueChange = {},
+                value = emailState.value,
+                onValueChange = {
+                    emailState.value = it
+                },
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Email,
@@ -432,8 +472,10 @@ fun GreetingSignUp() {
                 modifier = Modifier
                     .fillMaxWidth(),
                 shape = RoundedCornerShape(16.dp),
-                value = "",
-                onValueChange = {},
+                value = passwordState.value,
+                onValueChange = {
+                    passwordState.value = it
+                },
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Lock,
@@ -458,10 +500,14 @@ fun GreetingSignUp() {
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically
+
+
             ) {
                 Checkbox(
-                    checked = false,
-                    onCheckedChange = {},
+                    checked = checkState.value,
+                    onCheckedChange = {
+                        checkState.value =! checkState.value
+                    },
                     colors = CheckboxDefaults.colors(
                         checkedColor = Color(0xFFCF06F0), uncheckedColor = Color(0xFFCF06F0)
                     )
@@ -558,89 +604,112 @@ fun GreetingHome() {
             .fillMaxSize()
             .background(Color(0xFFF7F4F4))
     ) {
-        Column {
-
-        }
-        Spacer(modifier = Modifier.height(12.dp))
-        Text(
-            text = "Categories",
-            fontWeight = FontWeight.Normal,
-            color = Color.Black,
-            fontSize = 18.sp
-        )
-        Spacer(modifier = Modifier.height(12.dp))
-        LazyRow() {
-            items(20) {
-                Card(
-                    modifier = Modifier
-                        .width(180.dp)
-                        .height(120.dp)
-                        .padding(end = 8.dp),
-                    colors = CardDefaults
-                        .cardColors(
-                            containerColor = Color(0xFFCF06F0)
-                        ),
-                    elevation = CardDefaults.cardElevation(10.dp)
-                ) {
-
-                }
+        Surface (modifier = Modifier
+            .fillMaxWidth()
+            .height(160.dp)){
+            Image(
+                painter = painterResource(id = R.drawable.paris),
+                contentDescription = "Paisagem",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .fillMaxSize()
+            )
+            Row {
+                Text(text = "You're in Paris")
+                Text(text = "My Trips")
             }
         }
-        Spacer(modifier = Modifier.height(12.dp))
-        OutlinedTextField(
-            value = "",
-            onValueChange = {},
+
+
+
+        }
+        Column (
             modifier = Modifier
-                .fillMaxWidth(),
-            placeholder = {
-                Text(
-                    text = "Search your destiny",
-                    color = Color.Gray
-                )
-            },
-            colors = OutlinedTextFieldDefaults.colors(
-                unfocusedBorderColor = Color.White,
-                unfocusedContainerColor = Color.White
-            ),
-            shape = RoundedCornerShape(16.dp),
-            trailingIcon = {
-                IconButton(onClick = { /*TODO*/ }) {
-                    Icon(
-                        imageVector = Icons.Default.Search,
-                        contentDescription = "Botão de pesquisa",
-                        tint = Color.Gray,
+                .padding(horizontal = 20.dp)
+                .padding(top = 220.dp)
+        ){
+            Spacer(modifier = Modifier.height(12.dp))
+            Text(
+                text = "Categories",
+                fontWeight = FontWeight.Normal,
+                color = Color.Black,
+                fontSize = 18.sp
+            )
+            Spacer(modifier = Modifier.height(12.dp))
+            LazyRow() {
+                items(20) {
+                    Card(
                         modifier = Modifier
-                            .size(32.dp)
-                    )
+                            .width(180.dp)
+                            .height(120.dp)
+                            .padding(end = 8.dp),
+                        colors = CardDefaults
+                            .cardColors(
+                                containerColor = Color(0xFFCF06F0)
+                            ),
+                        elevation = CardDefaults.cardElevation(10.dp)
+                    ) {
+
+                    }
                 }
             }
-        )
-        Spacer(modifier = Modifier.height(12.dp))
-        Text(
-            text = "Past Trips",
-            fontWeight = FontWeight.Normal,
-            color = Color.Black,
-            fontSize = 18.sp
-        )
-        LazyColumn(){
-            items(20) {
-                Card(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .height(120.dp)
-                        .padding(bottom = 8.dp),
-                    colors = CardDefaults
-                        .cardColors(
-                            containerColor = Color(0xFFCF06F0)
-                        ),
-                    elevation = CardDefaults.cardElevation(10.dp)
-                ) {
+            Spacer(modifier = Modifier.height(12.dp))
+            OutlinedTextField(
+                value = "",
+                onValueChange = {},
+                modifier = Modifier
+                    .fillMaxWidth(),
+                placeholder = {
+                    Text(
+                        text = "Search your destiny",
+                        color = Color.Gray
+                    )
+                },
+                colors = OutlinedTextFieldDefaults.colors(
+                    unfocusedBorderColor = Color.White,
+                    unfocusedContainerColor = Color.White
+                ),
+                shape = RoundedCornerShape(16.dp),
+                trailingIcon = {
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(
+                            imageVector = Icons.Default.Search,
+                            contentDescription = "Botão de pesquisa",
+                            tint = Color.Gray,
+                            modifier = Modifier
+                                .size(32.dp)
+                        )
+                    }
+                }
+            )
+            Spacer(modifier = Modifier.height(12.dp))
+            Text(
+                text = "Past Trips",
+                fontWeight = FontWeight.Normal,
+                color = Color.Black,
+                fontSize = 18.sp,
+                modifier = Modifier
+                    .padding(top = 10.dp)
+            )
+            LazyColumn(){
+                items(20) {
+                    Card(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .height(120.dp)
+                            .padding(bottom = 8.dp),
+                        colors = CardDefaults
+                            .cardColors(
+                                containerColor = Color(0xFFCF06F0)
+                            ),
+                        elevation = CardDefaults.cardElevation(10.dp)
+                    ) {
 
+                    }
                 }
             }
         }
     }
-}
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
@@ -650,10 +719,3 @@ fun GreetingPreviewHome() {
     }
 }
 
-//@Preview(showBackground = true, showSystemUi = true)
-//@Composable
-//fun GreetingPreview() {
-//    MyTripsTheme {
-//        GreetingHome()
-//    }
-//}
