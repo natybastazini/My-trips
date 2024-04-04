@@ -23,18 +23,22 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.AddAPhoto
 import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.DirectionsRailwayFilled
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.Mosque
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.PersonOutline
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.filled.PhoneAndroid
+import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -60,6 +64,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -606,7 +611,7 @@ fun GreetingHome() {
     ) {
         Surface (modifier = Modifier
             .fillMaxWidth()
-            .height(160.dp)){
+            .height(220.dp)){
             Image(
                 painter = painterResource(id = R.drawable.paris),
                 contentDescription = "Paisagem",
@@ -614,9 +619,59 @@ fun GreetingHome() {
                 modifier = Modifier
                     .fillMaxSize()
             )
-            Row {
-                Text(text = "You're in Paris")
-                Text(text = "My Trips")
+            Row (
+                modifier = Modifier
+                    .padding(horizontal = 20.dp, vertical = 12.dp)
+            ){
+                Column (
+                    modifier = Modifier
+                        .fillMaxWidth()
+                ){
+                    Column (
+                        horizontalAlignment = Alignment.End,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    ){
+                        Card (
+                            modifier = Modifier
+                                .width(80.dp)
+                                .height(80.dp),
+                            shape = CircleShape
+                        ){
+                            Image(
+                                painter = painterResource(id = R.drawable.bart),
+                                contentDescription = "",
+                                contentScale = ContentScale.Crop
+                            )
+                        }
+                            Text(
+                                text = "Susanna Hoffs",
+                                color =  Color.White,
+                                fontSize = 16.sp
+                            )
+                    }
+                    Spacer(modifier = Modifier.height(24.dp))
+                    Row (){
+                        Icon(
+                            imageVector = Icons.Default.Place,
+                            contentDescription = "Botão de pesquisa",
+                            tint = Color.White,
+                            modifier = Modifier
+                                .size(24.dp)
+                        )
+                        Text(
+                            text = "You're in Paris",
+                            color = Color.White,
+                            fontSize = 18.sp
+                        )
+                    }
+                    Text(
+                        text = "My Trips",
+                        color = Color.White,
+                        fontSize = 32.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
             }
         }
 
@@ -641,15 +696,34 @@ fun GreetingHome() {
                     Card(
                         modifier = Modifier
                             .width(180.dp)
-                            .height(120.dp)
-                            .padding(end = 8.dp),
+                            .height(100.dp)
+                            .padding(end = 12.dp),
                         colors = CardDefaults
                             .cardColors(
                                 containerColor = Color(0xFFCF06F0)
                             ),
                         elevation = CardDefaults.cardElevation(10.dp)
                     ) {
-
+                        Column (
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .fillMaxSize(),
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ){
+                            Icon(
+                                imageVector = Icons.Default.Mosque,
+                                contentDescription = "Montanha",
+                                tint = Color(0xFFFFFFFF),
+                                modifier = Modifier
+                                    .size(32.dp)
+                            )
+                            Text(
+                                text = "Montain",
+                                color = Color.White,
+                                fontSize = 20.sp
+                            )
+                        }
                     }
                 }
             }
@@ -691,20 +765,38 @@ fun GreetingHome() {
                 modifier = Modifier
                     .padding(top = 10.dp)
             )
+            Spacer(modifier = Modifier.height(12.dp))
             LazyColumn(){
                 items(20) {
                     Card(
                         modifier = Modifier
                             .fillMaxSize()
-                            .height(120.dp)
-                            .padding(bottom = 8.dp),
+                            .height(200.dp)
+                            .padding(bottom = 12.dp),
                         colors = CardDefaults
                             .cardColors(
-                                containerColor = Color(0xFFCF06F0)
+                                containerColor = Color.White
                             ),
                         elevation = CardDefaults.cardElevation(10.dp)
                     ) {
-
+                        Column {
+                            Text(
+                                text = "London, 2019",
+                                color = Color(0xFFCF06F0),
+                                fontWeight = FontWeight(510)
+                            )
+                            Text(
+                                text = "London is the capital and largest city of  the United Kingdom, with a population of just under 9 million.",
+                                color = Color.Gray
+                            )
+                            Row {
+                                Text(
+                                    text = "18 Feb - 21 Feb",
+                                    color = Color(0xFFCF06F0),
+                                    fontWeight = FontWeight(510)
+                                )
+                            }
+                        }
                     }
                 }
             }
