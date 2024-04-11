@@ -29,6 +29,8 @@ import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -43,6 +45,11 @@ import br.senai.sp.jandira.mytrips.R
 
 @Composable
 fun GreetingHome(controleNavegacao: NavHostController) {
+
+    var searchState = remember {
+        mutableStateOf("")
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -168,8 +175,10 @@ fun GreetingHome(controleNavegacao: NavHostController) {
         }
         Spacer(modifier = Modifier.height(12.dp))
         OutlinedTextField(
-            value = "",
-            onValueChange = {},
+            value = searchState.value,
+            onValueChange = {
+                searchState.value = it
+            },
             modifier = Modifier
                 .fillMaxWidth(),
             placeholder = {
