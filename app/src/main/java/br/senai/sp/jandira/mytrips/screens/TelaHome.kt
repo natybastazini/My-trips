@@ -35,12 +35,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import br.senai.sp.jandira.mytrips.R
 
 @Composable
-fun GreetingHome() {
+fun GreetingHome(controleNavegacao: NavHostController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -82,7 +84,7 @@ fun GreetingHome() {
                             )
                         }
                         Text(
-                            text = "Susanna Hoffs",
+                            text = "Bart Simpson",
                             color =  Color.White,
                             fontSize = 16.sp
                         )
@@ -208,7 +210,7 @@ fun GreetingHome() {
                 Card(
                     modifier = Modifier
                         .fillMaxSize()
-                        .height(200.dp)
+                        .height(240.dp)
                         .padding(bottom = 12.dp),
                     colors = CardDefaults
                         .cardColors(
@@ -216,21 +218,44 @@ fun GreetingHome() {
                         ),
                     elevation = CardDefaults.cardElevation(10.dp)
                 ) {
-                    Column {
+                    Card (
+                        modifier = Modifier
+                            .height(120.dp)
+                            .fillMaxWidth()
+                            .padding(horizontal = 6.dp, vertical = 6.dp)
+                    ){
+                        Image(
+                            painter = painterResource(id = R.drawable.london) ,
+                            contentDescription = "Paisagem",
+                            contentScale = ContentScale.Crop
+                        )
+                    }
+                    Column (
+                        modifier = Modifier
+                            .padding(horizontal = 10.dp)
+                    ){
                         Text(
                             text = "London, 2019",
                             color = Color(0xFFCF06F0),
-                            fontWeight = FontWeight(510)
+                            fontWeight = FontWeight(480)
                         )
                         Text(
                             text = "London is the capital and largest city of  the United Kingdom, with a population of just under 9 million.",
-                            color = Color.Gray
+                            color = Color.Gray,
+                            fontWeight = FontWeight.Normal,
+                            fontSize = 12.sp,
+                            modifier = Modifier
+                                .padding(vertical = 4.dp)
                         )
-                        Row {
+                        Row (
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            horizontalArrangement = Arrangement.End
+                        ) {
                             Text(
                                 text = "18 Feb - 21 Feb",
                                 color = Color(0xFFCF06F0),
-                                fontWeight = FontWeight(510)
+                                fontWeight = FontWeight(480)
                             )
                         }
                     }
@@ -239,3 +264,9 @@ fun GreetingHome() {
         }
     }
 }
+//@Preview
+//@Composable
+//fun GreetingHomePreview() {
+//    GreetingHome()
+//
+//}

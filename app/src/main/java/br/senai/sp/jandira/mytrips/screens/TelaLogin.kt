@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.mytrips.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -29,11 +30,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 
 @Composable
-fun GreetingLogin() {
+fun GreetingLogin(controleNavegacao: NavHostController) {
 
     var emailState = remember {
         mutableStateOf("")
@@ -156,7 +159,9 @@ fun GreetingLogin() {
                     horizontalAlignment = Alignment.End
                 ) {
                     Button(
-                        onClick = { /*TODO*/ },
+                        onClick = {
+                                  controleNavegacao.navigate("home")
+                        },
                         modifier = Modifier
                             .width(140.dp)
                             .height(60.dp),
@@ -192,6 +197,10 @@ fun GreetingLogin() {
                         )
                         Text(
                             text = "Sing up",
+                            modifier = Modifier
+                                .clickable {
+                                    controleNavegacao.navigate("signup")
+                                           },
                             color = Color(0xFFCF06f0),
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Bold
@@ -218,3 +227,10 @@ fun GreetingLogin() {
         }
     }
 }
+
+//@Preview
+//@Composable
+//fun GreetingHomePreview() {
+//    GreetingLogin()
+//
+//}
