@@ -43,6 +43,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 
 @Composable
 fun GreetingSignUp(controleNavegacao: NavHostController) {
@@ -360,8 +361,9 @@ fun GreetingSignUp(controleNavegacao: NavHostController) {
     }
 }
 
-//@Preview
+//@Preview (showBackground =  true, showSystemUi = true)
 //@Composable
-//fun GreetingHomePreview() {
-////    GreetingSignUp()
+//fun GreetingSignUpPreview() {
+//    GreetingSignUp(controleNavegacao = rememberNavController())
+//
 //}

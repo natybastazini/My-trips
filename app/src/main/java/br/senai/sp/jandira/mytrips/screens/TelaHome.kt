@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.mytrips.screens
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -14,10 +15,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Mosque
+import androidx.compose.material.icons.filled.NoAdultContent
+import androidx.compose.material.icons.filled.NotInterested
 import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
@@ -34,6 +38,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -41,7 +46,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import br.senai.sp.jandira.mytrips.R
+import br.senai.sp.jandira.mytrips.repositorio.CategoriaRepositorio
+import br.senai.sp.jandira.mytrips.repositorio.ViagemRepositorio
+import br.senai.sp.jandira.mytrips.utilitarios.encurtadorDeDatas
 
 @Composable
 fun GreetingHome(controleNavegacao: NavHostController) {
@@ -49,6 +58,9 @@ fun GreetingHome(controleNavegacao: NavHostController) {
     var searchState = remember {
         mutableStateOf("")
     }
+
+    val viagens = ViagemRepositorio().listarTodasAsViagens()
+    val categorias = CategoriaRepositorio().listarTodasAsCategorias()
 
     Column(
         modifier = Modifier
@@ -138,7 +150,7 @@ fun GreetingHome(controleNavegacao: NavHostController) {
         )
         Spacer(modifier = Modifier.height(12.dp))
         LazyRow() {
-            items(20) {
+            items(categorias) {
                 Card(
                     modifier = Modifier
                         .width(180.dp)
@@ -158,14 +170,14 @@ fun GreetingHome(controleNavegacao: NavHostController) {
                         horizontalAlignment = Alignment.CenterHorizontally
                     ){
                         Icon(
-                            imageVector = Icons.Default.Mosque,
+                            imageVector = if (it.icone  == null) Icons.Default.NotInterested else it.icone!!,
                             contentDescription = "Montanha",
                             tint = Color(0xFFFFFFFF),
                             modifier = Modifier
                                 .size(32.dp)
                         )
                         Text(
-                            text = "Montain",
+                            text = it.nome,
                             color = Color.White,
                             fontSize = 20.sp
                         )
@@ -215,11 +227,12 @@ fun GreetingHome(controleNavegacao: NavHostController) {
         )
         Spacer(modifier = Modifier.height(12.dp))
         LazyColumn(){
-            items(20) {
+
+            items(viagens) {
+
                 Card(
                     modifier = Modifier
                         .fillMaxSize()
-                        .height(240.dp)
                         .padding(bottom = 12.dp),
                     colors = CardDefaults
                         .cardColors(
@@ -227,29 +240,31 @@ fun GreetingHome(controleNavegacao: NavHostController) {
                         ),
                     elevation = CardDefaults.cardElevation(10.dp)
                 ) {
-                    Card (
+                    Surface (
                         modifier = Modifier
+                            .fillMaxWidth()
                             .height(120.dp)
                             .fillMaxWidth()
-                            .padding(horizontal = 6.dp, vertical = 6.dp)
+                            .padding(horizontal = 6.dp, vertical = 6.dp),
+                       shape = RoundedCornerShape(12.dp)
                     ){
-                        Image(
-                            painter = painterResource(id = R.drawable.london) ,
-                            contentDescription = "Paisagem",
-                            contentScale = ContentScale.Crop
-                        )
+                            Image(
+                                painter = if (it.imagem == null) painterResource(id = R.drawable.coringa) else it.imagem!!,
+                                contentDescription = "Paisagem",
+                                contentScale = ContentScale.Crop
+                            )
                     }
                     Column (
                         modifier = Modifier
                             .padding(horizontal = 10.dp)
                     ){
                         Text(
-                            text = "London, 2019",
+                            text = "${it.destino}, ${it.dataChegada.year}",
                             color = Color(0xFFCF06F0),
                             fontWeight = FontWeight(480)
                         )
                         Text(
-                            text = "London is the capital and largest city of  the United Kingdom, with a population of just under 9 million.",
+                            text = it.descricao,
                             color = Color.Gray,
                             fontWeight = FontWeight.Normal,
                             fontSize = 12.sp,
@@ -262,9 +277,11 @@ fun GreetingHome(controleNavegacao: NavHostController) {
                             horizontalArrangement = Arrangement.End
                         ) {
                             Text(
-                                text = "18 Feb - 21 Feb",
+                                text = encurtadorDeDatas(it.dataChegada, it.dataPartida),
                                 color = Color(0xFFCF06F0),
-                                fontWeight = FontWeight(480)
+                                fontWeight = FontWeight.Bold,
+                                modifier = Modifier
+                                    .padding(bottom = 12.dp)
                             )
                         }
                     }
@@ -273,9 +290,10 @@ fun GreetingHome(controleNavegacao: NavHostController) {
         }
     }
 }
-//@Preview
-//@Composable
-//fun GreetingHomePreview() {
-//    GreetingHome()
-//
-//}
+
+@Preview (showBackground =  true, showSystemUi = true)
+@Composable
+fun GreetingHomePreview() {
+    GreetingHome(controleNavegacao = rememberNavController())
+
+}
