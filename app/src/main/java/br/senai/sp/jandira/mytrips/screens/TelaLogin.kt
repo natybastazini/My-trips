@@ -29,12 +29,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import br.senai.sp.jandira.mytrips.R
 
 @Composable
 fun GreetingLogin(controleNavegacao: NavHostController) {
@@ -79,7 +81,7 @@ fun GreetingLogin(controleNavegacao: NavHostController) {
                 fontWeight = FontWeight.ExtraBold
             )
             Text(
-                text = "Please sing in to continue.",
+                text = stringResource(id = R.string.supporting_phrase),
                 color = Color(0xFFA09C9C),
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Normal

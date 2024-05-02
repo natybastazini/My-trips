@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login">Login</string>
+    <string name="supporting_phrase">Faça login para continuar</string>
+    <string name="password">Senha</string>
+    <string name="sign_in">Entrar</string>
+    <string name="supporting_cadastrar">Não tem uma conta?</string>
+    <string name="sign_up">Cadastrar</string>
+</resources>
