@@ -1,23 +1,27 @@
 <resources>
-    <string name="login">Login</string>
-    <string name="supporting_phrase">Please sign in to continue</string>
+    <string name="app_name">My trips</string>
+
+    //Login
+    <string name="supporting_phrase_login">Please sign in to continue</string>
     <string name="password">Password</string>
     <string name="sign_in">Sign in</string>
-    <string name="supporting_cadastrar">Don\'t have an account?</string>
+    <string name="no_account">Don\'t have an account?</string>
     <string name="sign_up">Sign Up</string>
 
-
-
-
-
-    <string name="app_name">My Trips</string>
-    <string name="header">You\'re in</string>
+    //Sign Up
+    <string name="supportign_sign_up">Create a new account</string>
+    <string name="name">name</string>
+    <string name="phone">phone</string>
+    <string name="eighteen">over 18?</string>
+    <string name="create_account">Create Account</string>
+    <string name="have_account">Already have an account?</string>
+    
+    //Home
+    <string name="text_header">You\'re in</string>
     <string name="categories">Categories</string>
     <string name="montain">Montain</string>
     <string name="snow">Snow</string>
     <string name="beach">Beach</string>
     <string name="input">Search your destiny</string>
     <string name="trips">Past Trips</string>
-    <string name="london">London</string>
-    <string name="london_description">London is the capital and largest city of the United Kingdom, with a population of just under 9 million.</string>
 </resources>

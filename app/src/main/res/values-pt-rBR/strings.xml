@@ -1,9 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="login">Login</string>
-    <string name="supporting_phrase">Faça login para continuar</string>
+    <string name="app_name">My trips</string>
+
+    <string name="supporting_phrase_login">Faça login para continuar</string>
     <string name="password">Senha</string>
     <string name="sign_in">Entrar</string>
-    <string name="supporting_cadastrar">Não tem uma conta?</string>
-    <string name="sign_up">Cadastrar</string>
+    <string name="no_account">Não tem uma conta?</string>
+    <string name="sign_up">Cadastre-se</string>
+
+
+    <string name="supportign_sign_up">Crie uma nova conta</string>
+    <string name="name">Nome</string>
+    <string name="phone">Telefone</string>
+    <string name="create_account">Criar conta</string>
+    <string name="eighteen">maior de 18?</string>
+    <string name="have_account">já tem uma conta?</string>
+
+    <string name="text_header">Você está em</string>
+    <string name="categories">Categorias</string>
+    <string name="montain">Montanha</string>
+    <string name="snow">Neve</string>
+    <string name="beach">Praia</string>
+    <string name="input">Pesquise seu destino</string>
+    <string name="trips">Viagens anteriores</string>
+
 </resources>

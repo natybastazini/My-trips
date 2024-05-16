@@ -81,7 +81,7 @@ fun GreetingLogin(controleNavegacao: NavHostController) {
                 fontWeight = FontWeight.ExtraBold
             )
             Text(
-                text = stringResource(id = R.string.supporting_phrase),
+                text = stringResource(id = R.string.supporting_phrase_login),
                 color = Color(0xFFA09C9C),
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Normal
@@ -146,7 +146,7 @@ fun GreetingLogin(controleNavegacao: NavHostController) {
                     )
                 ),
                 label = {
-                    Text(text = "Password")
+                    Text(text = stringResource(id = R.string.password))
                 }
             )
             Row(
@@ -175,7 +175,7 @@ fun GreetingLogin(controleNavegacao: NavHostController) {
                         shape = RoundedCornerShape(16.dp)
                     ) {
                         Text(
-                            text = "SIGN IN",
+                            text = stringResource(id = R.string.sign_in),
                             modifier = Modifier
                                 .padding(end = 2.dp),
                             fontSize = 18.sp,
@@ -193,13 +193,15 @@ fun GreetingLogin(controleNavegacao: NavHostController) {
 
                     ) {
                         Text(
-                            text = "Don't have an account?",
+                            text = stringResource(id = R.string.no_account),
                             color = Color(0xFFA09C9C),
                             fontSize = 14.sp,
-                            fontWeight = FontWeight.Normal
+                            fontWeight = FontWeight.Normal,
+                            modifier = Modifier
+                                .padding(end = 2.dp)
                         )
                         Text(
-                            text = "Sing up",
+                            text = stringResource(id = R.string.sign_up),
                             modifier = Modifier
                                 .clickable {
                                     controleNavegacao.navigate("signup")
@@ -231,9 +233,9 @@ fun GreetingLogin(controleNavegacao: NavHostController) {
     }
 }
 
-//@Preview (showBackground =  true, showSystemUi = true)
-//@Composable
-//fun GreetingLoginPreview() {
-//   GreetingLogin(controleNavegacao = rememberNavController())
-//
-//}
+@Preview (showBackground =  true, showSystemUi = true)
+@Composable
+fun GreetingLoginPreview() {
+   GreetingLogin(controleNavegacao = rememberNavController())
+
+}

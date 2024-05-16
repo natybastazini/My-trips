@@ -41,6 +41,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -117,11 +118,20 @@ fun GreetingHome(controleNavegacao: NavHostController) {
                             modifier = Modifier
                                 .size(24.dp)
                         )
-                        Text(
-                            text = "You're in Paris",
-                            color = Color.White,
-                            fontSize = 18.sp
-                        )
+                        Row () {
+                            Text(
+                                text = stringResource(id = R.string.text_header),
+                                color = Color.White,
+                                fontSize = 18.sp,
+                                modifier = Modifier
+                                    .padding(end = 4.dp)
+                            )
+                            Text(
+                                text = "Paris",
+                                color = Color.White,
+                                fontSize = 18.sp
+                            )
+                        }
                     }
                     Text(
                         text = "My Trips",
@@ -143,7 +153,7 @@ fun GreetingHome(controleNavegacao: NavHostController) {
     ){
         Spacer(modifier = Modifier.height(12.dp))
         Text(
-            text = "Categories",
+            text = stringResource(id = R.string.categories),
             fontWeight = FontWeight.Normal,
             color = Color.Black,
             fontSize = 18.sp
@@ -195,7 +205,7 @@ fun GreetingHome(controleNavegacao: NavHostController) {
                 .fillMaxWidth(),
             placeholder = {
                 Text(
-                    text = "Search your destiny",
+                    text = stringResource(id = R.string.input),
                     color = Color.Gray
                 )
             },
@@ -218,7 +228,7 @@ fun GreetingHome(controleNavegacao: NavHostController) {
         )
         Spacer(modifier = Modifier.height(12.dp))
         Text(
-            text = "Past Trips",
+            text = stringResource(id = R.string.trips),
             fontWeight = FontWeight.Normal,
             color = Color.Black,
             fontSize = 18.sp,

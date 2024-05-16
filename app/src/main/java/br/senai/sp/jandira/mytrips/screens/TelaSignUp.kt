@@ -38,12 +38,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import br.senai.sp.jandira.mytrips.R
 
 @Composable
 fun GreetingSignUp(controleNavegacao: NavHostController) {
@@ -105,7 +107,7 @@ fun GreetingSignUp(controleNavegacao: NavHostController) {
                     fontWeight = FontWeight.ExtraBold
                 )
                 Text(
-                    text = "Create a new account",
+                    text = stringResource(id = R.string.no_account),
                     color = Color(0xFFA09C9C),
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Normal
@@ -181,7 +183,7 @@ fun GreetingSignUp(controleNavegacao: NavHostController) {
                     )
                 ),
                 label = {
-                    Text(text = "Nome")
+                    Text(text = stringResource(id = R.string.name))
                 }
             )
             OutlinedTextField(
@@ -207,7 +209,7 @@ fun GreetingSignUp(controleNavegacao: NavHostController) {
                     )
                 ),
                 label = {
-                    Text(text = "Phone")
+                    Text(text = stringResource(id = R.string.phone))
                 }
             )
             OutlinedTextField(
@@ -259,7 +261,7 @@ fun GreetingSignUp(controleNavegacao: NavHostController) {
                     )
                 ),
                 label = {
-                    Text(text = "Password")
+                    Text(text = stringResource(id = R.string.password))
                 }
             )
         }
@@ -281,7 +283,7 @@ fun GreetingSignUp(controleNavegacao: NavHostController) {
                     )
                 )
                 Text(
-                    text = "Over 18?",
+                    text = stringResource(id = R.string.eighteen),
                     fontWeight = FontWeight.Normal,
                     color = Color.Black
                 )
@@ -313,7 +315,7 @@ fun GreetingSignUp(controleNavegacao: NavHostController) {
                     shape = RoundedCornerShape(16.dp)
                 ) {
                     Text(
-                        text = "CREATE ACCOUNT",
+                        text = stringResource(id = R.string.create_account),
                         modifier = Modifier
                             .padding(end = 2.dp),
                         fontSize = 18.sp,
@@ -326,15 +328,17 @@ fun GreetingSignUp(controleNavegacao: NavHostController) {
                     horizontalArrangement = Arrangement.End
                 ) {
                     Text(
-                        text = "Already have an account?",
+                        text = stringResource(id = R.string.have_account),
                         color = Color(0xFFA09C9C),
                         fontSize = 14.sp,
-                        fontWeight = FontWeight.Normal
+                        fontWeight = FontWeight.Normal,
+                        modifier = Modifier
+                            .padding(end = 2.dp)
                     )
                     Text(
-                        text = "Sign in",
+                        text = stringResource(id = R.string.sign_in),
                         modifier = Modifier
-                            .clickable { controleNavegacao.navigate("signin") },
+                            .clickable { controleNavegacao.navigate("login") },
                         color = Color(0xFFCF06f0),
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold
@@ -361,9 +365,9 @@ fun GreetingSignUp(controleNavegacao: NavHostController) {
     }
 }
 
-//@Preview (showBackground =  true, showSystemUi = true)
-//@Composable
-//fun GreetingSignUpPreview() {
-//    GreetingSignUp(controleNavegacao = rememberNavController())
-//
-//}
+@Preview (showBackground =  true, showSystemUi = true)
+@Composable
+fun GreetingSignUpPreview() {
+    GreetingSignUp(controleNavegacao = rememberNavController())
+
+}
