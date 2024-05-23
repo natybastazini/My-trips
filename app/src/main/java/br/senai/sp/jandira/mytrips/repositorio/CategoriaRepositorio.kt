@@ -25,7 +25,7 @@ class CategoriaRepositorio {
         )
         val beach = Categoria(
             id = 3,
-            nome = stringResource(id = R.string.beach),
+            nome = stringResource(id = R.string.beach ),
             icone = Icons.Default.BeachAccess
         )
 
